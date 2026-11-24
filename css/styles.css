@@ -1,0 +1,1553 @@
+/* ==========================================================================
+   SUGAR CRUSH // ARC 2025 — Y2K POP-ZINE & INTERACTIVE CUTOUT LOOKBOOK
+   Inspired 1:1 by the Sugar Crush Print Poster Aesthetic
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Chakra+Petch:ital,wght@0,600;0,700;1,700&family=Permanent+Marker&family=Press+Start+2P&family=Rubik+Mono+One&display=swap');
+
+:root {
+  /* Core Poster Palette (Sampled directly from reference) */
+  --zine-blue: #0273B5;
+  --zine-blue-mid: #0482CA;
+  --zine-blue-deep: #014D82;
+  --zine-blue-ink: #013358;
+
+  --pop-yellow: #FFF238;
+  --pop-yellow-bright: #FFF86B;
+  --pop-yellow-Mustard: #F6DF1C;
+
+  --racing-red: #DC1B22;
+  --racing-red-bright: #F2262E;
+  --crimson-extrude: #B81218;
+  --crimson-dark: #820B10;
+
+  --naruto-pink: #EB84B3;
+  --sticker-white: #FFFFFF;
+  --paper-cream: #F7F5EE;
+  --ink-black: #0B0B0D;
+
+  /* Dynamic Theme Accents (switchable in interactive studio) */
+  --canvas-primary: var(--zine-blue);
+  --canvas-bright: var(--zine-blue-mid);
+  --canvas-deep: var(--zine-blue-deep);
+  --headline-fill: var(--pop-yellow);
+  --headline-shadow: var(--crimson-extrude);
+  --script-color: var(--racing-red);
+
+  /* Typography */
+  --font-display: 'Anton', Impact, 'Arial Black', sans-serif;
+  --font-script: 'Permanent Marker', 'Segoe Script', cursive;
+  --font-pixel: 'Press Start 2P', monospace;
+  --font-tech: 'Chakra Petch', sans-serif;
+
+  /* Frame & Zine Rhythm */
+  --poster-frame: 14px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--ink-black);
+  color: var(--sticker-white);
+  font-family: var(--font-tech);
+  overflow-x: hidden;
+}
+
+body {
+  background: var(--ink-black);
+  min-height: 100vh;
+  padding: var(--poster-frame);
+  position: relative;
+  overflow-x: hidden;
+  selection-background-color: var(--pop-yellow);
+}
+
+::selection {
+  background: var(--pop-yellow);
+  color: var(--racing-red);
+}
+
+/* ==========================================================================
+   PHYSICAL PRINT MAGAZINE SHELL (Black Outer Frame + Scuffed White Trim + Grain)
+   ========================================================================== */
+.zine-shell {
+  position: relative;
+  background:
+    radial-gradient(circle at 50% 38%, var(--canvas-bright) 0%, var(--canvas-primary) 54%, var(--canvas-deep) 100%);
+  border: 2.5px solid rgba(255, 255, 255, 0.78);
+  box-shadow:
+    inset 0 0 0 2px rgba(255, 255, 255, 0.25),
+    inset 0 0 65px rgba(0, 18, 42, 0.55),
+    0 0 0 4px var(--ink-black);
+  border-radius: 3px;
+  overflow: hidden;
+  transition: background 0.45s ease;
+}
+
+/* Halftone Dot Screen Overlay */
+.zine-shell::before {
+  content: "";
+  position: fixed;
+  inset: var(--poster-frame);
+  pointer-events: none;
+  z-index: 45;
+  background-image:
+    radial-gradient(rgba(0, 0, 0, 0.14) 1px, transparent 1.2px),
+    radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1.2px);
+  background-size: 5px 5px, 7px 7px;
+  background-position: 0 0, 2.5px 2.5px;
+  mix-blend-mode: soft-light;
+  opacity: 0.85;
+}
+
+/* Distressed Magazine Edge Wear & Paper Crease Texture */
+.zine-paper-overlay {
+  position: fixed;
+  inset: var(--poster-frame);
+  pointer-events: none;
+  z-index: 46;
+  border: 2px solid rgba(255, 255, 255, 0.55);
+  box-shadow:
+    inset 0 0 18px rgba(255, 255, 255, 0.22),
+    inset 0 0 3px 1px rgba(255, 255, 255, 0.65);
+  background:
+    linear-gradient(125deg, rgba(255,255,255,0.07) 0%, transparent 28%, transparent 72%, rgba(0,0,0,0.14) 100%),
+    repeating-linear-gradient(0deg, rgba(255,255,255,0.018) 0px, rgba(255,255,255,0.018) 1px, transparent 1px, transparent 3px);
+}
+
+/* SVG Noise Grain Layer */
+.noise-layer {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 47;
+  opacity: 0.16;
+  mix-blend-mode: overlay;
+}
+
+/* ==========================================================================
+   SIGNATURE NAVIGATION MENU & BUTTONS (Exact Reference Poster DNA!)
+   ========================================================================== */
+.zine-navbar {
+  position: sticky;
+  top: 14px;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 24px 8px;
+  flex-wrap: wrap;
+}
+
+.brand-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--ink-black);
+  color: var(--pop-yellow);
+  padding: 6px 14px 6px 10px;
+  border: 3px solid var(--ink-black);
+  outline: 3.5px solid var(--sticker-white);
+  box-shadow: -4px 5px 0 var(--crimson-extrude), -5px 7px 14px rgba(0,0,0,0.42);
+  transform: rotate(-1.5deg);
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+}
+
+.brand-badge:hover {
+  transform: rotate(1deg) translateY(-3px) scale(1.04);
+  box-shadow: -6px 8px 0 var(--racing-red), -6px 10px 18px rgba(0,0,0,0.5);
+}
+
+.brand-badge .mini-bow {
+  width: 30px;
+  height: 22px;
+  display: block;
+}
+
+.brand-badge-text {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  letter-spacing: 1.5px;
+  line-height: 1;
+  color: var(--pop-yellow);
+  text-shadow: -2px 2px 0 var(--racing-red);
+}
+
+.brand-issue-tag {
+  font-family: var(--font-pixel);
+  font-size: 0.52rem;
+  background: var(--racing-red);
+  color: var(--sticker-white);
+  padding: 3px 5px;
+  border-radius: 2px;
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* MENU ITEMS: Die-Cut Sticker Pills + Yellow Block + Crimson 3D Offset + Marker Scribble */
+.menu-btn {
+  position: relative;
+  appearance: none;
+  border: 3px solid var(--ink-black);
+  outline: 3.5px solid var(--sticker-white);
+  background: var(--paper-cream);
+  color: var(--ink-black);
+  font-family: var(--font-display);
+  font-size: 1.02rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 7px 16px 6px;
+  cursor: pointer;
+  box-shadow:
+    -3px 4px 0 var(--ink-black),
+    -4px 6px 12px rgba(0, 0, 0, 0.36);
+  transition:
+    transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1),
+    background-color 0.18s ease,
+    color 0.18s ease,
+    box-shadow 0.18s ease;
+  user-select: none;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+/* Red Marker Scribble Hover Accent inside Buttons/Menus */
+.menu-btn::after,
+.btn-sugar::after {
+  content: "";
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  bottom: 3px;
+  height: 3.5px;
+  background: var(--racing-red);
+  border-radius: 99px;
+  transform: scaleX(0) rotate(-1.5deg);
+  transform-origin: left center;
+  transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.menu-btn:hover {
+  background: var(--pop-yellow);
+  color: var(--ink-black);
+  transform: translate(3px, -4px) rotate(-2deg) scale(1.04);
+  box-shadow:
+    -6px 7px 0 var(--crimson-extrude),
+    -7px 10px 16px rgba(0, 0, 0, 0.45);
+}
+
+.menu-btn:hover::after {
+  transform: scaleX(1) rotate(-1.5deg);
+}
+
+.menu-btn:active {
+  transform: translate(-2px, 3px) rotate(0deg) scale(0.98);
+  box-shadow: -1px 1px 0 var(--crimson-extrude);
+}
+
+.menu-btn.active {
+  background: var(--pop-yellow);
+  color: var(--ink-black);
+  transform: rotate(-1.8deg);
+  box-shadow:
+    -5px 5px 0 var(--racing-red),
+    -6px 8px 15px rgba(0, 0, 0, 0.45);
+}
+
+.menu-btn.active::before {
+  content: "★";
+  color: var(--racing-red);
+  font-size: 0.85rem;
+}
+
+/* PRIMARY ACTION BUTTON: Giant Sugar-Block Style */
+.btn-sugar {
+  position: relative;
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  font-family: var(--font-display);
+  font-size: 1.12rem;
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+  padding: 10px 22px 9px;
+  background: var(--pop-yellow);
+  color: var(--ink-black);
+  border: 3.5px solid var(--ink-black);
+  outline: 4px solid var(--sticker-white);
+  box-shadow:
+    -5px 5px 0 var(--crimson-extrude),
+    -6px 8px 18px rgba(0, 0, 0, 0.42);
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.18s ease,
+    background-color 0.18s ease;
+}
+
+.btn-sugar:hover {
+  transform: translate(4px, -5px) rotate(-1.8deg) scale(1.04);
+  background: var(--pop-yellow-bright);
+  box-shadow:
+    -8px 8px 0 var(--racing-red),
+    -10px 12px 22px rgba(0, 0, 0, 0.5);
+}
+
+.btn-sugar:hover::after {
+  transform: scaleX(1) rotate(-1deg);
+}
+
+.btn-sugar:active {
+  transform: translate(-3px, 3px) scale(0.97);
+  box-shadow: -1px 1px 0 var(--crimson-extrude);
+}
+
+/* RED RACING VARIANT BUTTON */
+.btn-sugar.btn-red {
+  background: var(--racing-red);
+  color: var(--pop-yellow);
+  text-shadow: -2px 2px 0 var(--ink-black);
+  box-shadow:
+    -5px 5px 0 var(--ink-black),
+    -6px 8px 18px rgba(0, 0, 0, 0.45);
+}
+
+.btn-sugar.btn-red::after {
+  background: var(--pop-yellow);
+}
+
+.btn-sugar.btn-red:hover {
+  background: var(--racing-red-bright);
+  box-shadow:
+    -8px 8px 0 var(--pop-yellow),
+    -10px 12px 22px rgba(0, 0, 0, 0.55);
+}
+
+/* COMPACT STICKER ICON BUTTON */
+.btn-sticker-icon {
+  appearance: none;
+  border: 3px solid var(--ink-black);
+  outline: 3px solid var(--sticker-white);
+  background: var(--racing-red);
+  color: var(--sticker-white);
+  font-family: var(--font-pixel);
+  font-size: 0.62rem;
+  padding: 8px 11px;
+  cursor: pointer;
+  box-shadow: -3px 4px 0 var(--ink-black);
+  transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.18s;
+}
+
+.btn-sticker-icon:hover {
+  transform: translate(2px, -3px) rotate(3deg) scale(1.06);
+  background: var(--pop-yellow);
+  color: var(--ink-black);
+}
+
+.btn-sticker-icon.muted {
+  background: #374151;
+  color: #D1D5DB;
+}
+
+/* ==========================================================================
+   HERO MAGAZINE COVER STAGE (1:1 Reference Layout + 3D Parallax + Cutout Star)
+   ========================================================================== */
+.hero-cover-section {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 4px 18px 22px;
+  gap: 14px;
+}
+
+.magazine-poster-frame {
+  position: relative;
+  width: min(1080px, 95vw);
+  height: clamp(590px, 80vh, 770px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 14px 16px;
+  perspective: 1100px;
+}
+
+/* GIANT WALL-TO-WALL BLOCK DISPLAY TYPOGRAPHY ("SUGAR CRUSH") */
+.poster-typography-wall {
+  position: relative;
+  width: 100%;
+  height: 58%;
+  z-index: 2;
+  pointer-events: none;
+  user-select: none;
+}
+
+.hero-wall-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  display: block;
+  filter: url(#print-roughness);
+}
+
+.svg-giant-fill {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 252px;
+  fill: var(--headline-fill);
+  letter-spacing: -2px;
+  transition: transform 0.2s ease-out;
+}
+
+.svg-giant-extrude {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 252px;
+  fill: var(--headline-shadow);
+  stroke: var(--headline-shadow);
+  stroke-width: 4px;
+  letter-spacing: -2px;
+  transition: transform 0.2s ease-out;
+}
+
+.svg-script-word {
+  font-family: var(--font-script);
+  font-size: 122px;
+  fill: var(--script-color);
+  stroke: rgba(130, 8, 14, 0.35);
+  stroke-width: 2px;
+}
+
+/* CENTER CUTOUT HERO MODEL STAGE */
+.hero-cutout-stage {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(650px, 88%);
+  height: 85%;
+  z-index: 12;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.hero-cutout-wrapper {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.28s ease;
+}
+
+.hero-cutout-wrapper.switching {
+  opacity: 0;
+  transform: translateY(28px) scale(0.94);
+}
+
+.hero-cutout-img {
+  max-height: 100%;
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  object-position: bottom center;
+  pointer-events: auto;
+  cursor: pointer;
+  filter: drop-shadow(-6px 10px 18px rgba(0, 14, 36, 0.52));
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.3s ease;
+}
+
+.hero-cutout-img:hover {
+  transform: scale(1.018);
+}
+
+/* Flash Pop Animation when Switching Cover Model */
+.camera-flash-burst {
+  position: fixed;
+  inset: 0;
+  background: #FFFDF4;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 95;
+  transition: opacity 0.32s ease-out;
+}
+
+.camera-flash-burst.active {
+  opacity: 0.72;
+  transition: none;
+}
+
+/* DRAGGABLE INTERACTIVE STICKERS ON HERO COVER */
+.cover-sticker {
+  position: absolute;
+  z-index: 22;
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.cover-sticker:hover {
+  transform: scale(1.1) rotate(4deg);
+}
+
+.cover-sticker:active,
+.cover-sticker.dragging {
+  cursor: grabbing;
+  transform: scale(1.15) rotate(-3deg);
+  z-index: 35;
+  transition: none;
+}
+
+.sticker-bow-hero {
+  top: 16%;
+  left: 54%;
+  width: clamp(86px, 11vw, 126px);
+  transform: rotate(16deg);
+}
+
+.sticker-naruto-hero {
+  top: 52%;
+  right: 6%;
+  width: clamp(104px, 14vw, 166px);
+  animation: floatSpinSlow 14s linear infinite;
+}
+
+@keyframes floatSpinSlow {
+  0% { transform: rotate(0deg); }
+  50% { transform: rotate(180deg) scale(1.04); }
+  100% { transform: rotate(360deg); }
+}
+
+/* 8-BIT PIXEL HEARTS HYPE METER (Exact Left-Middle Position from Reference!) */
+.pixel-hearts-dock {
+  position: absolute;
+  top: 56%;
+  left: 3.5%;
+  z-index: 24;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.pixel-hearts-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.pixel-heart-item {
+  width: clamp(32px, 3.8vw, 46px);
+  height: auto;
+  transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
+  filter: drop-shadow(-2px 3px 4px rgba(0, 0, 0, 0.38));
+}
+
+.pixel-heart-item:hover {
+  transform: scale(1.24) translateY(-4px);
+}
+
+.pixel-heart-item.pulse {
+  animation: heartBeat 0.42s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes heartBeat {
+  0% { transform: scale(1); }
+  45% { transform: scale(1.38) rotate(-8deg); }
+  100% { transform: scale(1); }
+}
+
+.hype-counter-tag {
+  font-family: var(--font-pixel);
+  font-size: 0.54rem;
+  background: var(--ink-black);
+  color: var(--pop-yellow);
+  padding: 4px 7px;
+  border: 2px solid var(--sticker-white);
+  box-shadow: -2px 3px 0 var(--racing-red);
+}
+
+/* FLOATING QUICK POSE & HEADLINE DOCK (Right/Bottom Controls) */
+.cover-controls-floating {
+  position: relative;
+  z-index: 28;
+  width: min(1140px, 96vw);
+  margin: 4px auto 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+  padding: 12px 18px;
+  background: rgba(1, 45, 82, 0.72);
+  border: 3px solid var(--ink-black);
+  outline: 3px solid var(--sticker-white);
+  box-shadow: -5px 6px 0 var(--ink-black);
+  backdrop-filter: blur(6px);
+}
+
+.thumb-switcher-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.switcher-label {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  letter-spacing: 1px;
+  color: var(--pop-yellow);
+  text-shadow: -2px 2px 0 var(--crimson-extrude);
+  margin-right: 4px;
+}
+
+.pose-thumb-btn {
+  position: relative;
+  width: 54px;
+  height: 58px;
+  border: 3px solid var(--ink-black);
+  outline: 2.5px solid var(--sticker-white);
+  background: var(--zine-blue-mid);
+  cursor: pointer;
+  overflow: hidden;
+  padding: 2px;
+  box-shadow: -3px 3px 0 var(--ink-black);
+  transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.18s;
+}
+
+.pose-thumb-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.pose-thumb-btn:hover {
+  transform: translateY(-4px) rotate(-3deg) scale(1.08);
+  background: var(--pop-yellow);
+}
+
+.pose-thumb-btn.active {
+  background: var(--pop-yellow);
+  outline-color: var(--pop-yellow);
+  box-shadow: -4px 4px 0 var(--racing-red);
+  transform: translateY(-3px) rotate(-2deg) scale(1.08);
+}
+
+.pose-num-badge {
+  position: absolute;
+  bottom: 1px;
+  right: 2px;
+  font-family: var(--font-pixel);
+  font-size: 0.45rem;
+  background: var(--racing-red);
+  color: #fff;
+  padding: 1px 3px;
+}
+
+/* POSTER BOTTOM METADATA BAR (Torn Barcode Left | 2025 Center | ARC Right) */
+.poster-bottom-meta {
+  position: relative;
+  width: 100%;
+  z-index: 25;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-top: auto;
+  pointer-events: none;
+}
+
+/* TORN WHITE BARCODE STICKER (Exact bottom-left match!) */
+.torn-barcode-card {
+  pointer-events: auto;
+  position: relative;
+  background: var(--sticker-white);
+  color: var(--ink-black);
+  width: 74px;
+  padding: 12px 12px 12px 8px;
+  /* Irregular hand-torn paper right edge */
+  clip-path: polygon(
+    0% 0%, 84% 0%, 92% 6%, 86% 13%, 96% 21%, 89% 30%, 98% 39%,
+    90% 48%, 97% 57%, 88% 67%, 96% 76%, 87% 85%, 94% 93%, 85% 100%, 0% 100%
+  );
+  filter: drop-shadow(3px 4px 6px rgba(0, 0, 0, 0.45));
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  overflow: hidden;
+}
+
+.torn-barcode-card:hover {
+  transform: scale(1.08) rotate(-2deg);
+}
+
+.barcode-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: 100%;
+}
+
+.barcode-line {
+  background: var(--ink-black);
+  width: 100%;
+}
+
+.barcode-num-vertical {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-family: monospace;
+  font-weight: 800;
+  font-size: 0.62rem;
+  letter-spacing: 1.5px;
+  color: var(--ink-black);
+}
+
+.barcode-inner {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Laser Scan Line Effect */
+.laser-scan-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -10%;
+  height: 3px;
+  background: var(--racing-red-bright);
+  box-shadow: 0 0 10px 2px var(--racing-red-bright);
+  opacity: 0;
+}
+
+.torn-barcode-card.scanning .laser-scan-line {
+  opacity: 1;
+  animation: barcodeLaser 0.65s ease-in-out 2;
+}
+
+@keyframes barcodeLaser {
+  0% { top: 4%; }
+  50% { top: 92%; }
+  100% { top: 4%; }
+}
+
+.poster-year-stamp {
+  pointer-events: auto;
+  font-family: var(--font-script);
+  font-weight: 900;
+  font-style: italic;
+  font-size: clamp(1.75rem, 3vw, 2.4rem);
+  color: var(--sticker-white);
+  -webkit-text-stroke: 5px var(--ink-black);
+  paint-order: stroke fill;
+  letter-spacing: 1px;
+  text-shadow: -3px 3px 0 var(--ink-black);
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.poster-year-stamp:hover {
+  color: var(--pop-yellow);
+  transform: scale(1.1) rotate(-3deg);
+}
+
+.poster-arc-mark {
+  pointer-events: auto;
+  width: clamp(86px, 11vw, 128px);
+  cursor: pointer;
+  filter: drop-shadow(-3px 3px 0 var(--ink-black));
+  transition: transform 0.2s ease;
+}
+
+.poster-arc-mark:hover {
+  transform: skewX(-6deg) scale(1.08);
+}
+
+/* ==========================================================================
+   SLANTED TORN PAPER MARQUEE RIBBON
+   ========================================================================== */
+.zine-marquee-strip {
+  position: relative;
+  z-index: 30;
+  background: var(--pop-yellow);
+  color: var(--ink-black);
+  border-top: 4px solid var(--ink-black);
+  border-bottom: 4px solid var(--ink-black);
+  outline: 4px solid var(--sticker-white);
+  padding: 11px 0;
+  margin: 28px -10px;
+  transform: rotate(-1.4deg);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+}
+
+.zine-marquee-strip.red-strip {
+  background: var(--racing-red);
+  color: var(--pop-yellow);
+  transform: rotate(1.2deg);
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  gap: 32px;
+  animation: marqueeScroll 22s linear infinite;
+}
+
+.zine-marquee-strip:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+.marquee-item {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.marquee-item span.sep {
+  color: var(--racing-red);
+  font-family: var(--font-script);
+  font-size: 1.4rem;
+}
+
+.zine-marquee-strip.red-strip .marquee-item span.sep {
+  color: var(--sticker-white);
+}
+
+@keyframes marqueeScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ==========================================================================
+   SECTION HEADINGS (Yellow Pop-Block + Red Marker Script)
+   ========================================================================== */
+.zine-section {
+  position: relative;
+  z-index: 20;
+  max-width: 1220px;
+  margin: 0 auto;
+  padding: 48px 24px 64px;
+}
+
+.section-header {
+  position: relative;
+  margin-bottom: 42px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.section-kicker {
+  font-family: var(--font-pixel);
+  font-size: 0.65rem;
+  background: var(--racing-red);
+  color: var(--sticker-white);
+  padding: 6px 10px;
+  border: 2.5px solid var(--ink-black);
+  outline: 2.5px solid var(--sticker-white);
+  margin-bottom: 10px;
+  transform: rotate(-2deg);
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 6.5vw, 5.2rem);
+  line-height: 0.92;
+  text-transform: uppercase;
+  color: var(--pop-yellow);
+  text-shadow:
+    -3px 3px 0 var(--crimson-extrude),
+    -6px 6px 0 var(--ink-black);
+}
+
+.section-script-sub {
+  font-family: var(--font-script);
+  font-size: clamp(1.5rem, 3.2vw, 2.5rem);
+  color: var(--sticker-white);
+  background: var(--racing-red);
+  padding: 2px 14px;
+  border: 3px solid var(--ink-black);
+  outline: 3px solid var(--sticker-white);
+  transform: rotate(-3deg) translate(16px, -10px);
+  box-shadow: -4px 4px 0 var(--ink-black);
+}
+
+/* ==========================================================================
+   LOOKBOOK ARCHIVE SPREAD (All 5 Cutout Photos as Interactive Magazine Cards!)
+   ========================================================================== */
+.lookbook-filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.filter-pills {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.lookbook-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 28px;
+  align-items: stretch;
+}
+
+.zine-photo-card {
+  grid-column: span 4;
+  position: relative;
+  background:
+    radial-gradient(circle at 50% 35%, #088BD8 0%, #0265A3 75%, #014678 100%);
+  border: 4px solid var(--ink-black);
+  outline: 5px solid var(--sticker-white);
+  box-shadow:
+    -8px 8px 0 var(--ink-black),
+    -10px 14px 28px rgba(0, 0, 0, 0.48);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
+  transform-style: preserve-3d;
+}
+
+/* Asymmetric Magazine Spread Rhythm: First 2 Cards Wider Feature Spread! */
+.zine-photo-card.featured-wide {
+  grid-column: span 6;
+}
+
+.zine-photo-card:nth-child(odd) {
+  transform: rotate(-0.8deg);
+}
+
+.zine-photo-card:nth-child(even) {
+  transform: rotate(0.9deg);
+}
+
+.zine-photo-card:hover {
+  transform: translateY(-8px) rotate(0deg) scale(1.015);
+  box-shadow:
+    -11px 12px 0 var(--racing-red),
+    -14px 18px 34px rgba(0, 0, 0, 0.6);
+  z-index: 10;
+}
+
+/* Card Background Mini Block Word */
+.card-bg-word {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: clamp(3.4rem, 5.5vw, 5.2rem);
+  line-height: 0.86;
+  color: var(--pop-yellow);
+  text-shadow: -4px 4px 0 var(--crimson-extrude);
+  pointer-events: none;
+  user-select: none;
+  z-index: 1;
+  opacity: 0.96;
+}
+
+.card-script-tag {
+  position: absolute;
+  top: 56px;
+  right: 14px;
+  font-family: var(--font-script);
+  font-size: 1.65rem;
+  color: var(--racing-red-bright);
+  text-shadow: -1px 2px 0 #fff, 1px -1px 0 #fff, -1px -1px 0 #fff, 1px 1px 0 #fff;
+  transform: rotate(-10deg);
+  z-index: 6;
+  pointer-events: none;
+}
+
+.card-cutout-viewport {
+  position: relative;
+  height: 360px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 24px 14px 0;
+  z-index: 4;
+  overflow: hidden;
+}
+
+.zine-photo-card.featured-wide .card-cutout-viewport {
+  height: 420px;
+}
+
+.card-cutout-viewport img {
+  max-height: 96%;
+  max-width: 94%;
+  object-fit: contain;
+  object-position: bottom center;
+  transition: transform 0.32s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.3s ease;
+  filter: drop-shadow(-5px 7px 12px rgba(0, 12, 32, 0.5));
+}
+
+.zine-photo-card:hover .card-cutout-viewport img {
+  transform: scale(1.06) translateY(-4px);
+}
+
+.card-issue-pill {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 7;
+  font-family: var(--font-pixel);
+  font-size: 0.54rem;
+  background: var(--ink-black);
+  color: var(--pop-yellow);
+  padding: 5px 8px;
+  border: 2px solid var(--sticker-white);
+}
+
+.card-corner-sticker {
+  position: absolute;
+  bottom: 112px;
+  right: 12px;
+  width: 62px;
+  z-index: 7;
+  pointer-events: none;
+  transition: transform 0.25s ease;
+}
+
+.zine-photo-card:hover .card-corner-sticker {
+  transform: rotate(16deg) scale(1.14);
+}
+
+.card-info-footer {
+  position: relative;
+  z-index: 8;
+  background: var(--paper-cream);
+  color: var(--ink-black);
+  border-top: 4px solid var(--ink-black);
+  padding: 14px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card-title-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.card-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  letter-spacing: 0.5px;
+  color: var(--ink-black);
+}
+
+.card-mood-chip {
+  font-family: var(--font-pixel);
+  font-size: 0.48rem;
+  background: var(--racing-red);
+  color: var(--sticker-white);
+  padding: 4px 6px;
+}
+
+.card-desc {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #26262B;
+  line-height: 1.38;
+}
+
+.card-actions-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 2px;
+}
+
+.btn-card-action {
+  flex: 1;
+  appearance: none;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  padding: 8px 10px;
+  border: 2.5px solid var(--ink-black);
+  background: var(--pop-yellow);
+  color: var(--ink-black);
+  box-shadow: -3px 3px 0 var(--crimson-extrude);
+  cursor: pointer;
+  transition: transform 0.16s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.16s ease, background 0.16s;
+}
+
+.btn-card-action:hover {
+  transform: translate(2px, -3px) rotate(-1.5deg);
+  background: var(--pop-yellow-bright);
+  box-shadow: -5px 5px 0 var(--racing-red);
+}
+
+.btn-card-action.secondary {
+  flex: 0 0 auto;
+  background: var(--ink-black);
+  color: var(--sticker-white);
+  box-shadow: -3px 3px 0 var(--zine-blue);
+}
+
+.btn-card-action.secondary:hover {
+  background: var(--racing-red);
+  color: var(--pop-yellow);
+}
+
+/* Filter Modes for Cutouts */
+body[data-cutout-fx="halftone"] .hero-cutout-img,
+body[data-cutout-fx="halftone"] .card-cutout-viewport img {
+  filter: contrast(1.18) saturate(1.22) drop-shadow(-6px 10px 18px rgba(0, 14, 36, 0.55));
+}
+
+body[data-cutout-fx="crimson"] .hero-cutout-img,
+body[data-cutout-fx="crimson"] .card-cutout-viewport img {
+  filter: contrast(1.25) sepia(0.28) hue-rotate(-14deg) saturate(1.45) drop-shadow(-6px 10px 0px #B81218);
+}
+
+body[data-cutout-fx="cyber"] .hero-cutout-img,
+body[data-cutout-fx="cyber"] .card-cutout-viewport img {
+  filter: contrast(1.16) saturate(1.35) hue-rotate(12deg) drop-shadow(6px 6px 0px #FFF238);
+}
+
+/* ==========================================================================
+   INTERACTIVE STICKER COLLAGE & ZINE POSTER CREATOR STUDIO
+   ========================================================================== */
+.studio-layout {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 32px;
+  align-items: start;
+}
+
+.studio-canvas-box {
+  position: relative;
+  background: var(--ink-black);
+  padding: 14px;
+  border: 4px solid var(--sticker-white);
+  box-shadow: -10px 10px 0 var(--crimson-extrude), 0 18px 40px rgba(0,0,0,0.55);
+}
+
+#posterCanvas {
+  width: 100%;
+  height: auto;
+  display: block;
+  cursor: grab;
+  border: 2px solid rgba(255,255,255,0.65);
+}
+
+#posterCanvas:active {
+  cursor: grabbing;
+}
+
+.canvas-hint-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 4px 2px;
+  font-family: var(--font-pixel);
+  font-size: 0.55rem;
+  color: var(--pop-yellow);
+}
+
+.studio-controls-panel {
+  background: var(--paper-cream);
+  color: var(--ink-black);
+  border: 4px solid var(--ink-black);
+  outline: 5px solid var(--sticker-white);
+  box-shadow: -8px 8px 0 var(--ink-black);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.control-label {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  letter-spacing: 0.8px;
+  color: var(--ink-black);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.control-label span.step-num {
+  background: var(--racing-red);
+  color: var(--pop-yellow);
+  font-family: var(--font-pixel);
+  font-size: 0.58rem;
+  padding: 4px 6px;
+  border: 2px solid var(--ink-black);
+}
+
+.zine-input-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.zine-text-input {
+  width: 100%;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  letter-spacing: 1px;
+  padding: 9px 12px;
+  border: 3px solid var(--ink-black);
+  background: var(--sticker-white);
+  color: var(--ink-black);
+  box-shadow: -3px 3px 0 var(--zine-blue);
+}
+
+.zine-text-input:focus {
+  outline: none;
+  background: #FFFDE4;
+  box-shadow: -4px 4px 0 var(--racing-red);
+}
+
+.palette-swatches {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.swatch-btn {
+  appearance: none;
+  border: 3px solid var(--ink-black);
+  padding: 10px 6px;
+  font-family: var(--font-display);
+  font-size: 0.88rem;
+  cursor: pointer;
+  box-shadow: -3px 3px 0 var(--ink-black);
+  transition: transform 0.16s ease;
+}
+
+.swatch-btn:hover,
+.swatch-btn.active {
+  transform: translate(2px, -3px) rotate(-2deg);
+  outline: 3px solid var(--racing-red);
+}
+
+.sticker-stamp-tray {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.stamp-add-btn {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  background: var(--sticker-white);
+  color: var(--ink-black);
+  border: 2.5px solid var(--ink-black);
+  font-family: var(--font-display);
+  font-size: 0.92rem;
+  cursor: pointer;
+  box-shadow: -3px 3px 0 var(--ink-black);
+  transition: transform 0.16s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.16s;
+}
+
+.stamp-add-btn:hover {
+  background: var(--pop-yellow);
+  transform: translate(2px, -3px) rotate(-2deg);
+  box-shadow: -4px 4px 0 var(--racing-red);
+}
+
+.studio-action-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-top: 6px;
+}
+
+/* ==========================================================================
+   INSPECT LIGHTBOX MODAL (Before / After Background Cutout Comparison!)
+   ========================================================================== */
+.zine-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  background: rgba(5, 12, 24, 0.84);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.24s ease;
+}
+
+.zine-modal-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.zine-modal-card {
+  position: relative;
+  width: min(880px, 95vw);
+  max-height: 90vh;
+  overflow-y: auto;
+  background:
+    radial-gradient(circle at 50% 40%, #0787D4 0%, #0263A0 80%);
+  border: 4px solid var(--ink-black);
+  outline: 5px solid var(--sticker-white);
+  box-shadow: -12px 12px 0 var(--racing-red);
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+}
+
+.modal-visual-stage {
+  position: relative;
+  min-height: 440px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 28px 20px 0;
+  overflow: hidden;
+}
+
+.modal-visual-stage img {
+  max-height: 430px;
+  max-width: 95%;
+  object-fit: contain;
+  position: relative;
+  z-index: 4;
+}
+
+.modal-visual-bg-text {
+  position: absolute;
+  top: 16px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 5rem;
+  line-height: 0.85;
+  color: var(--pop-yellow);
+  text-shadow: -5px 5px 0 var(--crimson-extrude);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.modal-details-pane {
+  background: var(--paper-cream);
+  color: var(--ink-black);
+  border-left: 4px solid var(--ink-black);
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 15;
+  appearance: none;
+  background: var(--racing-red);
+  color: var(--pop-yellow);
+  border: 3px solid var(--ink-black);
+  outline: 3px solid var(--sticker-white);
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  padding: 4px 12px;
+  cursor: pointer;
+  box-shadow: -3px 3px 0 var(--ink-black);
+}
+
+.modal-stat-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.stat-box {
+  background: var(--sticker-white);
+  border: 2.5px solid var(--ink-black);
+  padding: 8px 10px;
+  box-shadow: -3px 3px 0 var(--zine-blue);
+}
+
+.stat-box small {
+  display: block;
+  font-family: var(--font-pixel);
+  font-size: 0.48rem;
+  color: var(--racing-red);
+  margin-bottom: 4px;
+}
+
+.stat-box strong {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+}
+
+/* ==========================================================================
+   FLOATING PIXEL HEART PARTICLES & FOOTER
+   ========================================================================== */
+.floating-particle {
+  position: fixed;
+  pointer-events: none;
+  z-index: 92;
+  animation: particleFly 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes particleFly {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(0.7) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--tx), var(--ty)) scale(1.25) rotate(var(--rot));
+  }
+}
+
+.zine-footer {
+  position: relative;
+  z-index: 20;
+  background: var(--ink-black);
+  color: var(--sticker-white);
+  border-top: 4px solid var(--sticker-white);
+  padding: 32px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+
+.footer-title {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--pop-yellow);
+  text-shadow: -3px 3px 0 var(--racing-red);
+}
+
+/* Toast Notification */
+.zine-toast {
+  position: fixed;
+  bottom: 26px;
+  right: 26px;
+  z-index: 98;
+  background: var(--pop-yellow);
+  color: var(--ink-black);
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  letter-spacing: 1px;
+  padding: 10px 18px;
+  border: 3px solid var(--ink-black);
+  outline: 3.5px solid var(--sticker-white);
+  box-shadow: -5px 5px 0 var(--racing-red);
+  transform: translateY(120px) rotate(-2deg);
+  opacity: 0;
+  transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.28s ease;
+  pointer-events: none;
+}
+
+.zine-toast.show {
+  transform: translateY(0) rotate(-2deg);
+  opacity: 1;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN
+   ========================================================================== */
+@media (max-width: 980px) {
+  .zine-photo-card,
+  .zine-photo-card.featured-wide {
+    grid-column: span 6;
+  }
+  .studio-layout,
+  .zine-modal-card {
+    grid-template-columns: 1fr;
+  }
+  .modal-details-pane {
+    border-left: none;
+    border-top: 4px solid var(--ink-black);
+  }
+}
+
+@media (max-width: 680px) {
+  :root {
+    --poster-frame: 8px;
+  }
+  .zine-navbar {
+    padding: 10px 12px;
+  }
+  .menu-btn {
+    font-size: 0.86rem;
+    padding: 6px 10px;
+  }
+  .zine-photo-card,
+  .zine-photo-card.featured-wide {
+    grid-column: span 12;
+  }
+  .magazine-poster-frame {
+    min-height: 560px;
+  }
+  .hero-cutout-stage {
+    height: 62vh;
+  }
+  .sticker-naruto-hero {
+    right: 2%;
+    width: 86px;
+  }
+}

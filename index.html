@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SUGAR CRUSH // ARC 2025 — Interactive Zine & Cutout Lookbook</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230273B5'/%3E%3Cpath d='M30 24C23 13 10 11 6 19C2 26 4 42 12 48C19 53 27 48 31 41C35 48 43 53 50 48C58 42 60 26 56 19C52 11 39 13 32 24Z' fill='%23E81E25' stroke='%23FFFFFF' stroke-width='4'/%3E%3Cellipse cx='31' cy='33' rx='7' ry='9' fill='%23FFF238' stroke='%230B0B0D' stroke-width='3'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body data-cutout-fx="halftone">
+
+  <!-- Hidden SVG Filters for Authentic Print Ink Roughness & Marker Brush Texture -->
+  <svg width="0" height="0" style="position:absolute; pointer-events:none" aria-hidden="true">
+    <defs>
+      <filter id="print-roughness">
+        <feTurbulence type="fractalNoise" baseFrequency="0.045" numOctaves="2" result="noise" />
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.6" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+      <filter id="marker-texture">
+        <feTurbulence type="fractalNoise" baseFrequency="0.09" numOctaves="3" result="brushNoise" />
+        <feDisplacementMap in="SourceGraphic" in2="brushNoise" scale="2.8" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+      <filter id="paper-grain-filter">
+        <feTurbulence type="fractalNoise" baseFrequency="0.82" numOctaves="3" stitchTiles="stitch" />
+        <feColorMatrix type="saturate" values="0" />
+      </filter>
+    </defs>
+  </svg>
+
+  <!-- Subtle Magazine Paper Grain & Distressed Inner Trim Overlays -->
+  <svg class="noise-layer" aria-hidden="true">
+    <rect width="100%" height="100%" filter="url(#paper-grain-filter)" />
+  </svg>
+  <div class="zine-paper-overlay" aria-hidden="true"></div>
+  <div id="cameraFlash" class="camera-flash-burst" aria-hidden="true"></div>
+
+  <!-- MAIN MAGAZINE SHELL -->
+  <div class="zine-shell">
+
+    <!-- STICKER NAVIGATION MENU BAR (Exact Reference Die-Cut + Block Extrusion Effect) -->
+    <header class="zine-navbar">
+      <a href="#coverSection" class="brand-badge" title="Kembali ke Cover Utama">
+        <span class="mini-bow" data-sticker-svg="bow"></span>
+        <span class="brand-badge-text">SUGAR CRUSH</span>
+        <span class="brand-issue-tag">ARC'25</span>
+      </a>
+
+      <nav class="nav-menu" aria-label="Menu Utama Majalah">
+        <a href="#coverSection" class="menu-btn active">COVER ISSUE</a>
+        <a href="#lookbookSection" class="menu-btn">5 CUTOUT ARCHIVE</a>
+        <a href="#studioSection" class="menu-btn">STICKER STUDIO</a>
+      </nav>
+
+      <div class="nav-menu">
+        <button id="btnToggleSfx" class="btn-sticker-icon" type="button">SFX: ON</button>
+        <button id="btnToggleTrail" class="btn-sticker-icon" type="button">TRAIL: ON</button>
+      </div>
+    </header>
+
+    <!-- ====================================================================
+         SECTION 1: INTERACTIVE HERO MAGAZINE COVER (1:1 Reference Twin!)
+         ==================================================================== -->
+    <section id="coverSection" class="hero-cover-section">
+      <div id="heroPosterFrame" class="magazine-poster-frame">
+
+        <!-- Giant Wall-to-Wall Yellow Block Typography + Crimson Extrusion + Red Marker Script (Exact 1:1 Reference Proportions!) -->
+        <div class="poster-typography-wall">
+          <svg class="hero-wall-svg" viewBox="0 0 1000 540" preserveAspectRatio="none" aria-label="SUGAR CRUSH">
+            <!-- Row 1 Extrusion + Fill -->
+            <text id="heroTopExtrude" x="490" y="232" text-anchor="middle" textLength="936" lengthAdjust="spacingAndGlyphs" class="svg-giant-extrude">SUGAR</text>
+            <text id="heroTopWord" x="500" y="222" text-anchor="middle" textLength="936" lengthAdjust="spacingAndGlyphs" class="svg-giant-fill">SUGAR</text>
+
+            <!-- Row 2 Extrusion + Fill -->
+            <text id="heroBottomExtrude" x="490" y="486" text-anchor="middle" textLength="936" lengthAdjust="spacingAndGlyphs" class="svg-giant-extrude">CRUSH</text>
+            <text id="heroBottomWord" x="500" y="476" text-anchor="middle" textLength="936" lengthAdjust="spacingAndGlyphs" class="svg-giant-fill">CRUSH</text>
+
+            <!-- Handwritten Red Marker Script Scrawled Over Seam (like "Sugar ... rush" in reference!) -->
+            <g class="svg-marker-layer" filter="url(#marker-texture)">
+              <text id="heroScriptLeft" x="215" y="335" text-anchor="middle" transform="rotate(-14 215 335)" class="svg-script-word">Sugar</text>
+              <text id="heroScriptRight" x="815" y="255" text-anchor="middle" transform="rotate(-11 815 255)" class="svg-script-word">rush</text>
+            </g>
+          </svg>
+        </div>
+
+        <!-- Draggable Kawaii Red Bow Sticker (Perched on head/cap like reference! Drag anywhere!) -->
+        <div id="heroStickerBow"
+             class="cover-sticker sticker-bow-hero"
+             data-sticker-svg="bow"
+             title="Geser pita merah sesukamu!"></div>
+
+        <!-- Draggable Narutomaki Ramen Swirl Sticker (Right side like reference!) -->
+        <div id="heroStickerNaruto"
+             class="cover-sticker sticker-naruto-hero"
+             data-sticker-svg="naruto"
+             title="Geser stiker Narutomaki!"></div>
+
+        <!-- 8-Bit Pixel Hearts Trio (Left-middle like reference! Click to boost Sugar Hype!) -->
+        <div class="pixel-hearts-dock">
+          <div id="pixelHeartsRow" class="pixel-hearts-row" title="Klik untuk pompa Sugar Rush HP!">
+            <div class="pixel-heart-item" data-sticker-svg="pixelHeart"></div>
+            <div class="pixel-heart-item" data-sticker-svg="pixelHeart"></div>
+            <div class="pixel-heart-item" data-sticker-svg="pixelHeart"></div>
+          </div>
+          <span class="hype-counter-tag">HP: <strong id="hypeCountVal">2025</strong> ♥</span>
+        </div>
+
+        <!-- Central Background-Removed Hero Model (Click to cycle all 5 poses!) -->
+        <div class="hero-cutout-stage">
+          <div id="heroCutoutWrapper" class="hero-cutout-wrapper">
+            <img id="heroCutoutImg"
+                 class="hero-cutout-img"
+                 src="assets/cutouts/zine_01.png"
+                 alt="Hero Cutout Cover Star" />
+          </div>
+        </div>
+
+        <!-- Authentic Bottom Poster Metadata: Torn Barcode Left | 2025 Center | ARC Right -->
+        <div class="poster-bottom-meta">
+          <div id="heroBarcodeCard" class="torn-barcode-card" title="Klik untuk scan barcode edisi!">
+            <div class="laser-scan-line"></div>
+            <div class="barcode-inner">
+              <span class="barcode-num-vertical">3 25270 73250 6</span>
+              <div id="heroBarcodeBars" class="barcode-bars"></div>
+            </div>
+          </div>
+
+          <div class="poster-year-stamp" title="Premiere Edition">2025</div>
+
+          <div class="poster-arc-mark" data-sticker-svg="arcLogo" title="ARC Streetwear Zine"></div>
+        </div>
+      </div>
+
+      <!-- Interactive Cover Switcher Dock (Switch 5 Cutouts, Headlines, Themes, Reset Stickers) -->
+      <div class="cover-controls-floating">
+        <div class="thumb-switcher-group">
+          <span class="switcher-label">PILIH BINTANG COVER (5 FOTO):</span>
+          <div id="poseThumbDock" class="thumb-switcher-group"></div>
+        </div>
+
+        <div class="thumb-switcher-group">
+          <button id="btnCycleHeadline" class="btn-sugar" type="button">GANTI TEKS JUDUL</button>
+          <button id="btnCycleTheme" class="btn-sugar btn-red" type="button">WARNA POSTER</button>
+          <button id="btnResetStickers" class="menu-btn" type="button">RESET STIKER</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLANTED ZINE TICKER RIBBON -->
+    <div class="zine-marquee-strip" aria-hidden="true">
+      <div class="marquee-track">
+        <div class="marquee-item">SUGAR CRUSH EDITION <span class="sep">Sugar rush!</span></div>
+        <div class="marquee-item">5 AI DIE-CUT LOOKBOOK <span class="sep">★</span></div>
+        <div class="marquee-item">DRAG &amp; DROP KAWAII STICKERS <span class="sep">♥♥♥</span></div>
+        <div class="marquee-item">ARC STREET ZINE 2025 <span class="sep">100% Iconic</span></div>
+        <div class="marquee-item">SUGAR CRUSH EDITION <span class="sep">Sugar rush!</span></div>
+        <div class="marquee-item">5 AI DIE-CUT LOOKBOOK <span class="sep">★</span></div>
+        <div class="marquee-item">DRAG &amp; DROP KAWAII STICKERS <span class="sep">♥♥♥</span></div>
+        <div class="marquee-item">ARC STREET ZINE 2025 <span class="sep">100% Iconic</span></div>
+      </div>
+    </div>
+
+    <!-- ====================================================================
+         SECTION 2: 5 CUTOUT PHOTOS EDITORIAL ARCHIVE SPREAD
+         ==================================================================== -->
+    <section id="lookbookSection" class="zine-section">
+      <div class="section-header">
+        <span class="section-kicker">ISSUE ARCHIVE // 05 FULL CUTOUTS</span>
+        <h2 class="section-title">THE CUTOUT LOOKBOOK</h2>
+        <span class="section-script-sub">All 5 Photos — Die-Cut &amp; Zine Graded!</span>
+      </div>
+
+      <div class="lookbook-filter-bar">
+        <div class="filter-pills">
+          <button class="menu-btn active" data-fx-mode="halftone" type="button">ZINE PRINT POP</button>
+          <button class="menu-btn" data-fx-mode="normal" type="button">ORIGINAL GRADE</button>
+          <button class="menu-btn" data-fx-mode="crimson" type="button">CRIMSON RUSH</button>
+          <button class="menu-btn" data-fx-mode="cyber" type="button">YELLOW GLOW</button>
+        </div>
+        <a href="#studioSection" class="btn-sugar btn-red">BUAT POSTER SENDIRI →</a>
+      </div>
+
+      <div id="lookbookGrid" class="lookbook-grid"></div>
+    </section>
+
+    <!-- SECOND SLANTED RED ZINE RIBBON -->
+    <div class="zine-marquee-strip red-strip" aria-hidden="true">
+      <div class="marquee-track">
+        <div class="marquee-item">CUSTOM POSTER LAB <span class="sep">Create Yours!</span></div>
+        <div class="marquee-item">GESER STIKER &amp; UNDUH PNG <span class="sep">♥♥♥</span></div>
+        <div class="marquee-item">HALFTONE MAGAZINE TEXTURE <span class="sep">ARC 2025</span></div>
+        <div class="marquee-item">CUSTOM POSTER LAB <span class="sep">Create Yours!</span></div>
+        <div class="marquee-item">GESER STIKER &amp; UNDUH PNG <span class="sep">♥♥♥</span></div>
+        <div class="marquee-item">HALFTONE MAGAZINE TEXTURE <span class="sep">ARC 2025</span></div>
+      </div>
+    </div>
+
+    <!-- ====================================================================
+         SECTION 3: INTERACTIVE STICKER COLLAGE & POSTER EXPORTER STUDIO
+         ==================================================================== -->
+    <section id="studioSection" class="zine-section">
+      <div class="section-header">
+        <span class="section-kicker">INTERACTIVE CREATOR // DRAG, STAMP &amp; EXPORT</span>
+        <h2 class="section-title">SUGAR CRUSH POSTER LAB</h2>
+        <span class="section-script-sub">Mix cutouts, stickers &amp; headlines!</span>
+      </div>
+
+      <div class="studio-layout">
+        <!-- Live Interactive 4:5 Magazine Canvas -->
+        <div class="studio-canvas-box">
+          <canvas id="posterCanvas" width="900" height="1125"></canvas>
+          <div class="canvas-hint-bar">
+            <span>DRAG: GESER FOTO / STIKER</span>
+            <span>SCROLL RODANYA: PERBESAR / PERKECIL</span>
+          </div>
+        </div>
+
+        <!-- Tactile Zine Studio Controls -->
+        <div class="studio-controls-panel">
+          <div class="control-group">
+            <label class="control-label"><span class="step-num">01</span> PILIH FOTO CUTOUT UTAMA</label>
+            <div id="studioPhotoChoices" class="thumb-switcher-group"></div>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label"><span class="step-num">02</span> EDIT TEKS BLOCK &amp; SPIDOL MERAH</label>
+            <div class="zine-input-row">
+              <input id="inpStudioTop" class="zine-text-input" type="text" maxlength="8" value="SUGAR" placeholder="BARIS 1" />
+              <input id="inpStudioBottom" class="zine-text-input" type="text" maxlength="8" value="CRUSH" placeholder="BARIS 2" />
+            </div>
+            <input id="inpStudioScript" class="zine-text-input" type="text" maxlength="18" value="Sugar rush" placeholder="Teks spidol merah (cth: Sugar rush)" />
+          </div>
+
+          <div class="control-group">
+            <label class="control-label"><span class="step-num">03</span> TEMA WARNA KERTAS CETAK</label>
+            <div id="studioPaletteSwatches" class="palette-swatches"></div>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label"><span class="step-num">04</span> TEMPEL STIKER REFERENSI (+ KLIK UNTUK TAMBAH)</label>
+            <div class="sticker-stamp-tray">
+              <button class="stamp-add-btn" data-add-sticker="bow" type="button">+ PITA MERAH</button>
+              <button class="stamp-add-btn" data-add-sticker="naruto" type="button">+ NARUTOMAKI</button>
+              <button class="stamp-add-btn" data-add-sticker="pixelHeart" type="button">+ PIXEL HEART</button>
+              <button class="stamp-add-btn" data-add-sticker="patch" type="button">+ RACING PATCH</button>
+              <button class="stamp-add-btn" data-add-sticker="starburst" type="button">+ 100% ICONIC</button>
+              <button class="stamp-add-btn" data-add-sticker="digicam" type="button">+ DIGICAM</button>
+            </div>
+          </div>
+
+          <div class="studio-action-buttons">
+            <button id="btnExportPoster" class="btn-sugar" type="button">⬇ DOWNLOAD POSTER PNG</button>
+            <button id="btnDeleteSticker" class="menu-btn" type="button">HAPUS STIKER PILIHAN</button>
+            <button id="btnResetStudio" class="menu-btn" type="button">RESET KANVAS</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="zine-footer">
+      <div>
+        <div class="footer-title">SUGAR CRUSH // 2025 ARC EDITION</div>
+        <p style="opacity:0.8; font-size:0.9rem; margin-top:4px;">
+          Interactive Y2K Pop-Zine Web Experience • Custom AI Die-Cut Photography &amp; Print Aesthetics
+        </p>
+      </div>
+      <div style="display:flex; gap:12px; align-items:center;">
+        <a href="#coverSection" class="btn-sugar">KEMBALI KE ATAS ↑</a>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- INSPECT CUTOUT MODAL -->
+  <div id="inspectModal" class="zine-modal-backdrop" role="dialog" aria-modal="true">
+    <div class="zine-modal-card">
+      <button id="btnCloseModal" class="modal-close-btn" type="button">✕ TUTUP</button>
+      <div class="modal-visual-stage">
+        <div id="modalBgWord" class="modal-visual-bg-text">SUGAR</div>
+        <img id="modalCutoutImg" src="assets/cutouts/zine_01.png" alt="Cutout Preview" />
+      </div>
+      <div class="modal-details-pane">
+        <div>
+          <span class="section-kicker" style="display:inline-block">AI BACKGROUND REMOVED + ZINE GRADE</span>
+          <h3 id="modalTitle" class="card-title" style="font-size:2rem; margin:8px 0;">CAP TILT</h3>
+          <p id="modalDesc" class="card-desc" style="margin-bottom:16px;"></p>
+
+          <div class="modal-stat-list">
+            <div class="stat-box">
+              <small>STYLING / OUTFIT</small>
+              <strong id="modalOutfit">-</strong>
+            </div>
+            <div class="stat-box">
+              <small>SHOT &amp; PRINT</small>
+              <strong id="modalCamera">-</strong>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <button id="btnModalToggleBorder" class="menu-btn" type="button" style="justify-content:center">
+            MODE: WHITE DIE-CUT STICKER
+          </button>
+          <button id="btnModalSendStudio" class="btn-sugar btn-red" type="button">
+            BUKA DI POSTER STUDIO →
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div id="zineToast" class="zine-toast" role="status" aria-live="polite"></div>
+
+  <script defer src="js/bundle.js"></script>
+</body>
+</html>
